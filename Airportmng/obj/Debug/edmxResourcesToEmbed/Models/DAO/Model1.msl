@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AirPortDatabaseModelStoreContainer" CdmEntityContainer="AirPortDatabaseEntities8">
+    <EntitySetMapping Name="Addresstables">
+      <EntityTypeMapping TypeName="AirPortDatabaseModel.Addresstable">
+        <MappingFragment StoreEntitySet="Addresstable">
+          <ScalarProperty Name="Hno" ColumnName="Hno" />
+          <ScalarProperty Name="Address_line1" ColumnName="Address_line1" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hanger_table">
+      <EntityTypeMapping TypeName="AirPortDatabaseModel.Hanger_table">
+        <MappingFragment StoreEntitySet="Hanger_table">
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Manager_Id" ColumnName="Manager_Id" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="HangerId" ColumnName="HangerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ManagerTables">
+      <EntityTypeMapping TypeName="AirPortDatabaseModel.ManagerTable">
+        <MappingFragment StoreEntitySet="ManagerTable">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SSN" ColumnName="SSN" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pilot_table">
+      <EntityTypeMapping TypeName="AirPortDatabaseModel.Pilot_table">
+        <MappingFragment StoreEntitySet="Pilot_table">
+          <ScalarProperty Name="License_no" ColumnName="License_no" />
+          <ScalarProperty Name="SSN" ColumnName="SSN" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+          <ScalarProperty Name="Pilot_Id" ColumnName="Pilot_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plane_hanger">
+      <EntityTypeMapping TypeName="AirPortDatabaseModel.Plane_hanger">
+        <MappingFragment StoreEntitySet="Plane_hanger">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Hanger_Id" ColumnName="Hanger_Id" />
+          <ScalarProperty Name="Plane_Id" ColumnName="Plane_Id" />
+          <ScalarProperty Name="fromdate" ColumnName="fromdate" />
+          <ScalarProperty Name="todate" ColumnName="todate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plane_pilot">
+      <EntityTypeMapping TypeName="AirPortDatabaseModel.Plane_pilot">
+        <MappingFragment StoreEntitySet="Plane_pilot">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Plane_id" ColumnName="Plane_id" />
+          <ScalarProperty Name="Pilot_id" ColumnName="Pilot_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plane_table">
+      <EntityTypeMapping TypeName="AirPortDatabaseModel.Plane_table">
+        <MappingFragment StoreEntitySet="Plane_table">
+          <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+          <ScalarProperty Name="ModelNo" ColumnName="ModelNo" />
+          <ScalarProperty Name="Plane_Name" ColumnName="Plane_Name" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Plane_Id" ColumnName="Plane_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Planeowner_table">
+      <EntityTypeMapping TypeName="AirPortDatabaseModel.Planeowner_table">
+        <MappingFragment StoreEntitySet="Planeowner_table">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Owner_name" ColumnName="Owner_name" />
+          <ScalarProperty Name="address_Id" ColumnName="address_Id" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admintables">
+      <EntityTypeMapping TypeName="AirPortDatabaseModel.Admintable">
+        <MappingFragment StoreEntitySet="Admintable">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

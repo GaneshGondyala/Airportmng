@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AirPortDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Addresstable">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="Hno" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address_line1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="state" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pincode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddressId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Admintable">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Hanger_table">
+          <Key>
+            <PropertyRef Name="HangerId" />
+          </Key>
+          <Property Name="Location" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Manager_Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Capacity" Type="int" Nullable="false" />
+          <Property Name="HangerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManagerTable">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SSN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DOB" Type="datetime" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddressId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ManagerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pilot_table">
+          <Key>
+            <PropertyRef Name="Pilot_Id" />
+          </Key>
+          <Property Name="License_no" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SSN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DOB" Type="datetime" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddressId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pilot_Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plane_hanger">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hanger_Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Plane_Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fromdate" Type="datetime" Nullable="false" />
+          <Property Name="todate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plane_pilot">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Plane_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pilot_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plane_table">
+          <Key>
+            <PropertyRef Name="Plane_Id" />
+          </Key>
+          <Property Name="RegistrationNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModelNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Plane_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Capacity" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Plane_Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Planeowner_table">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Owner_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="address_Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ManagerTable_Addresstable">
+          <End Role="Addresstable" Type="Self.Addresstable" Multiplicity="1" />
+          <End Role="ManagerTable" Type="Self.ManagerTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresstable">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="ManagerTable">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pilot_table_Addresstable">
+          <End Role="Addresstable" Type="Self.Addresstable" Multiplicity="1" />
+          <End Role="Pilot_table" Type="Self.Pilot_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresstable">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Pilot_table">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plane_hanger_Hanger_table">
+          <End Role="Hanger_table" Type="Self.Hanger_table" Multiplicity="1" />
+          <End Role="Plane_hanger" Type="Self.Plane_hanger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hanger_table">
+              <PropertyRef Name="HangerId" />
+            </Principal>
+            <Dependent Role="Plane_hanger">
+              <PropertyRef Name="Hanger_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plane_hanger_Plane_table1">
+          <End Role="Plane_table" Type="Self.Plane_table" Multiplicity="1" />
+          <End Role="Plane_hanger" Type="Self.Plane_hanger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plane_table">
+              <PropertyRef Name="Plane_Id" />
+            </Principal>
+            <Dependent Role="Plane_hanger">
+              <PropertyRef Name="Plane_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plane_pilot_Pilot_table">
+          <End Role="Pilot_table" Type="Self.Pilot_table" Multiplicity="1" />
+          <End Role="Plane_pilot" Type="Self.Plane_pilot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pilot_table">
+              <PropertyRef Name="Pilot_Id" />
+            </Principal>
+            <Dependent Role="Plane_pilot">
+              <PropertyRef Name="Pilot_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plane_pilot_Plane_table">
+          <End Role="Plane_table" Type="Self.Plane_table" Multiplicity="1" />
+          <End Role="Plane_pilot" Type="Self.Plane_pilot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plane_table">
+              <PropertyRef Name="Plane_Id" />
+            </Principal>
+            <Dependent Role="Plane_pilot">
+              <PropertyRef Name="Plane_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plane_table_Planeowner_table">
+          <End Role="Planeowner_table" Type="Self.Planeowner_table" Multiplicity="1" />
+          <End Role="Plane_table" Type="Self.Plane_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planeowner_table">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Plane_table">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Planeowner_table_Addresstable">
+          <End Role="Addresstable" Type="Self.Addresstable" Multiplicity="1" />
+          <End Role="Planeowner_table" Type="Self.Planeowner_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresstable">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Planeowner_table">
+              <PropertyRef Name="address_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AirPortDatabaseModelStoreContainer">
+          <EntitySet Name="Addresstable" EntityType="Self.Addresstable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admintable" EntityType="Self.Admintable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hanger_table" EntityType="Self.Hanger_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManagerTable" EntityType="Self.ManagerTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pilot_table" EntityType="Self.Pilot_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plane_hanger" EntityType="Self.Plane_hanger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plane_pilot" EntityType="Self.Plane_pilot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plane_table" EntityType="Self.Plane_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Planeowner_table" EntityType="Self.Planeowner_table" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ManagerTable_Addresstable" Association="Self.FK_ManagerTable_Addresstable">
+            <End Role="Addresstable" EntitySet="Addresstable" />
+            <End Role="ManagerTable" EntitySet="ManagerTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pilot_table_Addresstable" Association="Self.FK_Pilot_table_Addresstable">
+            <End Role="Addresstable" EntitySet="Addresstable" />
+            <End Role="Pilot_table" EntitySet="Pilot_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plane_hanger_Hanger_table" Association="Self.FK_Plane_hanger_Hanger_table">
+            <End Role="Hanger_table" EntitySet="Hanger_table" />
+            <End Role="Plane_hanger" EntitySet="Plane_hanger" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plane_hanger_Plane_table1" Association="Self.FK_Plane_hanger_Plane_table1">
+            <End Role="Plane_table" EntitySet="Plane_table" />
+            <End Role="Plane_hanger" EntitySet="Plane_hanger" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plane_pilot_Pilot_table" Association="Self.FK_Plane_pilot_Pilot_table">
+            <End Role="Pilot_table" EntitySet="Pilot_table" />
+            <End Role="Plane_pilot" EntitySet="Plane_pilot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plane_pilot_Plane_table" Association="Self.FK_Plane_pilot_Plane_table">
+            <End Role="Plane_table" EntitySet="Plane_table" />
+            <End Role="Plane_pilot" EntitySet="Plane_pilot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plane_table_Planeowner_table" Association="Self.FK_Plane_table_Planeowner_table">
+            <End Role="Planeowner_table" EntitySet="Planeowner_table" />
+            <End Role="Plane_table" EntitySet="Plane_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Planeowner_table_Addresstable" Association="Self.FK_Planeowner_table_Addresstable">
+            <End Role="Addresstable" EntitySet="Addresstable" />
+            <End Role="Planeowner_table" EntitySet="Planeowner_table" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AirPortDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Addresstable">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="Hno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address_line1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ManagerTables" Relationship="Self.FK_ManagerTable_Addresstable" FromRole="Addresstable" ToRole="ManagerTable" />
+          <NavigationProperty Name="Pilot_table" Relationship="Self.FK_Pilot_table_Addresstable" FromRole="Addresstable" ToRole="Pilot_table" />
+          <NavigationProperty Name="Planeowner_table" Relationship="Self.FK_Planeowner_table_Addresstable" FromRole="Addresstable" ToRole="Planeowner_table" />
+        </EntityType>
+        <EntityType Name="Hanger_table">
+          <Key>
+            <PropertyRef Name="HangerId" />
+          </Key>
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Manager_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Capacity" Type="Int32" Nullable="false" />
+          <Property Name="HangerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Plane_hanger" Relationship="Self.FK_Plane_hanger_Hanger_table" FromRole="Hanger_table" ToRole="Plane_hanger" />
+        </EntityType>
+        <EntityType Name="ManagerTable">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SSN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ManagerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Addresstable" Relationship="Self.FK_ManagerTable_Addresstable" FromRole="ManagerTable" ToRole="Addresstable" />
+        </EntityType>
+        <EntityType Name="Pilot_table">
+          <Key>
+            <PropertyRef Name="Pilot_Id" />
+          </Key>
+          <Property Name="License_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SSN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pilot_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Addresstable" Relationship="Self.FK_Pilot_table_Addresstable" FromRole="Pilot_table" ToRole="Addresstable" />
+          <NavigationProperty Name="Plane_pilot" Relationship="Self.FK_Plane_pilot_Pilot_table" FromRole="Pilot_table" ToRole="Plane_pilot" />
+        </EntityType>
+        <EntityType Name="Plane_hanger">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hanger_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Plane_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fromdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="todate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Hanger_table" Relationship="Self.FK_Plane_hanger_Hanger_table" FromRole="Plane_hanger" ToRole="Hanger_table" />
+          <NavigationProperty Name="Plane_table" Relationship="Self.FK_Plane_hanger_Plane_table1" FromRole="Plane_hanger" ToRole="Plane_table" />
+        </EntityType>
+        <EntityType Name="Plane_pilot">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Plane_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pilot_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pilot_table" Relationship="Self.FK_Plane_pilot_Pilot_table" FromRole="Plane_pilot" ToRole="Pilot_table" />
+          <NavigationProperty Name="Plane_table" Relationship="Self.FK_Plane_pilot_Plane_table" FromRole="Plane_pilot" ToRole="Plane_table" />
+        </EntityType>
+        <EntityType Name="Plane_table">
+          <Key>
+            <PropertyRef Name="Plane_Id" />
+          </Key>
+          <Property Name="RegistrationNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModelNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Plane_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Capacity" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Plane_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Plane_hanger" Relationship="Self.FK_Plane_hanger_Plane_table1" FromRole="Plane_table" ToRole="Plane_hanger" />
+          <NavigationProperty Name="Plane_pilot" Relationship="Self.FK_Plane_pilot_Plane_table" FromRole="Plane_table" ToRole="Plane_pilot" />
+          <NavigationProperty Name="Planeowner_table" Relationship="Self.FK_Plane_table_Planeowner_table" FromRole="Plane_table" ToRole="Planeowner_table" />
+        </EntityType>
+        <EntityType Name="Planeowner_table">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Owner_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Addresstable" Relationship="Self.FK_Planeowner_table_Addresstable" FromRole="Planeowner_table" ToRole="Addresstable" />
+          <NavigationProperty Name="Plane_table" Relationship="Self.FK_Plane_table_Planeowner_table" FromRole="Planeowner_table" ToRole="Plane_table" />
+        </EntityType>
+        <Association Name="FK_ManagerTable_Addresstable">
+          <End Role="Addresstable" Type="Self.Addresstable" Multiplicity="1" />
+          <End Role="ManagerTable" Type="Self.ManagerTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresstable">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="ManagerTable">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pilot_table_Addresstable">
+          <End Role="Addresstable" Type="Self.Addresstable" Multiplicity="1" />
+          <End Role="Pilot_table" Type="Self.Pilot_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresstable">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Pilot_table">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Planeowner_table_Addresstable">
+          <End Role="Addresstable" Type="Self.Addresstable" Multiplicity="1" />
+          <End Role="Planeowner_table" Type="Self.Planeowner_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresstable">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Planeowner_table">
+              <PropertyRef Name="address_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plane_hanger_Hanger_table">
+          <End Role="Hanger_table" Type="Self.Hanger_table" Multiplicity="1" />
+          <End Role="Plane_hanger" Type="Self.Plane_hanger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hanger_table">
+              <PropertyRef Name="HangerId" />
+            </Principal>
+            <Dependent Role="Plane_hanger">
+              <PropertyRef Name="Hanger_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plane_pilot_Pilot_table">
+          <End Role="Pilot_table" Type="Self.Pilot_table" Multiplicity="1" />
+          <End Role="Plane_pilot" Type="Self.Plane_pilot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pilot_table">
+              <PropertyRef Name="Pilot_Id" />
+            </Principal>
+            <Dependent Role="Plane_pilot">
+              <PropertyRef Name="Pilot_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plane_hanger_Plane_table1">
+          <End Role="Plane_table" Type="Self.Plane_table" Multiplicity="1" />
+          <End Role="Plane_hanger" Type="Self.Plane_hanger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plane_table">
+              <PropertyRef Name="Plane_Id" />
+            </Principal>
+            <Dependent Role="Plane_hanger">
+              <PropertyRef Name="Plane_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plane_pilot_Plane_table">
+          <End Role="Plane_table" Type="Self.Plane_table" Multiplicity="1" />
+          <End Role="Plane_pilot" Type="Self.Plane_pilot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plane_table">
+              <PropertyRef Name="Plane_Id" />
+            </Principal>
+            <Dependent Role="Plane_pilot">
+              <PropertyRef Name="Plane_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plane_table_Planeowner_table">
+          <End Role="Planeowner_table" Type="Self.Planeowner_table" Multiplicity="1" />
+          <End Role="Plane_table" Type="Self.Plane_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planeowner_table">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Plane_table">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AirPortDatabaseEntities8" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresstables" EntityType="Self.Addresstable" />
+          <EntitySet Name="Hanger_table" EntityType="Self.Hanger_table" />
+          <EntitySet Name="ManagerTables" EntityType="Self.ManagerTable" />
+          <EntitySet Name="Pilot_table" EntityType="Self.Pilot_table" />
+          <EntitySet Name="Plane_hanger" EntityType="Self.Plane_hanger" />
+          <EntitySet Name="Plane_pilot" EntityType="Self.Plane_pilot" />
+          <EntitySet Name="Plane_table" EntityType="Self.Plane_table" />
+          <EntitySet Name="Planeowner_table" EntityType="Self.Planeowner_table" />
+          <AssociationSet Name="FK_ManagerTable_Addresstable" Association="Self.FK_ManagerTable_Addresstable">
+            <End Role="Addresstable" EntitySet="Addresstables" />
+            <End Role="ManagerTable" EntitySet="ManagerTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pilot_table_Addresstable" Association="Self.FK_Pilot_table_Addresstable">
+            <End Role="Addresstable" EntitySet="Addresstables" />
+            <End Role="Pilot_table" EntitySet="Pilot_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Planeowner_table_Addresstable" Association="Self.FK_Planeowner_table_Addresstable">
+            <End Role="Addresstable" EntitySet="Addresstables" />
+            <End Role="Planeowner_table" EntitySet="Planeowner_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plane_hanger_Hanger_table" Association="Self.FK_Plane_hanger_Hanger_table">
+            <End Role="Hanger_table" EntitySet="Hanger_table" />
+            <End Role="Plane_hanger" EntitySet="Plane_hanger" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plane_pilot_Pilot_table" Association="Self.FK_Plane_pilot_Pilot_table">
+            <End Role="Pilot_table" EntitySet="Pilot_table" />
+            <End Role="Plane_pilot" EntitySet="Plane_pilot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plane_hanger_Plane_table1" Association="Self.FK_Plane_hanger_Plane_table1">
+            <End Role="Plane_table" EntitySet="Plane_table" />
+            <End Role="Plane_hanger" EntitySet="Plane_hanger" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plane_pilot_Plane_table" Association="Self.FK_Plane_pilot_Plane_table">
+            <End Role="Plane_table" EntitySet="Plane_table" />
+            <End Role="Plane_pilot" EntitySet="Plane_pilot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plane_table_Planeowner_table" Association="Self.FK_Plane_table_Planeowner_table">
+            <End Role="Planeowner_table" EntitySet="Planeowner_table" />
+            <End Role="Plane_table" EntitySet="Plane_table" />
+          </AssociationSet>
+          <EntitySet Name="Admintables" EntityType="AirPortDatabaseModel.Admintable" />
+        </EntityContainer>
+        <EntityType Name="Admintable">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AirPortDatabaseModelStoreContainer" CdmEntityContainer="AirPortDatabaseEntities8">
+          <EntitySetMapping Name="Addresstables">
+            <EntityTypeMapping TypeName="AirPortDatabaseModel.Addresstable">
+              <MappingFragment StoreEntitySet="Addresstable">
+                <ScalarProperty Name="Hno" ColumnName="Hno" />
+                <ScalarProperty Name="Address_line1" ColumnName="Address_line1" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hanger_table">
+            <EntityTypeMapping TypeName="AirPortDatabaseModel.Hanger_table">
+              <MappingFragment StoreEntitySet="Hanger_table">
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Manager_Id" ColumnName="Manager_Id" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="HangerId" ColumnName="HangerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManagerTables">
+            <EntityTypeMapping TypeName="AirPortDatabaseModel.ManagerTable">
+              <MappingFragment StoreEntitySet="ManagerTable">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pilot_table">
+            <EntityTypeMapping TypeName="AirPortDatabaseModel.Pilot_table">
+              <MappingFragment StoreEntitySet="Pilot_table">
+                <ScalarProperty Name="License_no" ColumnName="License_no" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Pilot_Id" ColumnName="Pilot_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plane_hanger">
+            <EntityTypeMapping TypeName="AirPortDatabaseModel.Plane_hanger">
+              <MappingFragment StoreEntitySet="Plane_hanger">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Hanger_Id" ColumnName="Hanger_Id" />
+                <ScalarProperty Name="Plane_Id" ColumnName="Plane_Id" />
+                <ScalarProperty Name="fromdate" ColumnName="fromdate" />
+                <ScalarProperty Name="todate" ColumnName="todate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plane_pilot">
+            <EntityTypeMapping TypeName="AirPortDatabaseModel.Plane_pilot">
+              <MappingFragment StoreEntitySet="Plane_pilot">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Plane_id" ColumnName="Plane_id" />
+                <ScalarProperty Name="Pilot_id" ColumnName="Pilot_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plane_table">
+            <EntityTypeMapping TypeName="AirPortDatabaseModel.Plane_table">
+              <MappingFragment StoreEntitySet="Plane_table">
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="ModelNo" ColumnName="ModelNo" />
+                <ScalarProperty Name="Plane_Name" ColumnName="Plane_Name" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Plane_Id" ColumnName="Plane_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Planeowner_table">
+            <EntityTypeMapping TypeName="AirPortDatabaseModel.Planeowner_table">
+              <MappingFragment StoreEntitySet="Planeowner_table">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Owner_name" ColumnName="Owner_name" />
+                <ScalarProperty Name="address_Id" ColumnName="address_Id" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admintables">
+            <EntityTypeMapping TypeName="AirPortDatabaseModel.Admintable">
+              <MappingFragment StoreEntitySet="Admintable">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
